@@ -29,7 +29,7 @@ namespace Freeboard {
                     .Column("Configuration", DbType.String, column => column.Unlimited())
                 );
             } catch (Exception e) {
-                Logger.Error("Error creating Freeboard. Error Message: {0}", e.Message);
+                Logger.Error("Error creating Freeboard part record. Error Message: {0}", e.Message);
                 _notifier.Add(NotifyType.Error, T(e.Message));
             }
 
@@ -49,10 +49,10 @@ namespace Freeboard {
                         .WithSetting("ContentPermissionsPartSettings.Delete", "Administrator")
                         .WithSetting("ContentPermissionsPartSettings.DisplayedRoles", "Anonymous,Authenticated")
                     )
-                    );
+                );
 
             } catch (Exception ex) {
-                Logger.Error("Error creating Freeboard. Error Message: {0}", ex.Message);
+                Logger.Error("Error creating Freeboard content type. Error Message: {0}", ex.Message);
                 _notifier.Add(NotifyType.Error, T(ex.Message));
             }
 

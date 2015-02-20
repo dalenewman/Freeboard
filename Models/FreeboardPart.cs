@@ -6,16 +6,15 @@ namespace Freeboard.Models {
     public class FreeboardPart : ContentPart<FreeboardPartRecord> {
 
         public string Configuration {
-            get { return Record.Configuration; }
+            get {
+                return string.IsNullOrEmpty(Record.Configuration) ? "{}" : Record.Configuration;
+            }
             set { Record.Configuration = value; }
         }
 
         public string EditorTheme {
             get {
-                if (string.IsNullOrEmpty(Record.EditorTheme)) {
-                    return "solarized";
-                }
-                return Record.EditorTheme;
+                return string.IsNullOrEmpty(Record.EditorTheme) ? "cobalt" : Record.EditorTheme;
             }
             set { Record.EditorTheme = value; }
         }

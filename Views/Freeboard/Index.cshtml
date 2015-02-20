@@ -31,13 +31,11 @@
                 $(function () {
                     freeboard.initialize(true);
 
-                    @if (Model.Configuration != string.Empty) {
+                    @if (Model.Configuration != "{}") {
                         <text>
                         var data = @Html.Raw(Model.Configuration);
-                        freeboard.showLoadingIndicator(true)
                         freeboard.loadDashboard(data, function () {
                             freeboard.setEditing(false);
-                            freeboard.showLoadingIndicator(false);
                         });
                         </text>
                     }

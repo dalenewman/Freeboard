@@ -1,25 +1,30 @@
 ﻿using System;
 using System.Web.Routing;
 using Freeboard.Models;
-using Newtonsoft.Json;
 using Orchard.ContentManagement;
 using Orchard.ContentManagement.Handlers;
 using Orchard.Data;
 using Orchard.Localization;
 using Orchard.Logging;
+using Orchard.Services;
 using Orchard.UI.Notify;
 
 namespace Freeboard.Handlers {
     public class FreeboardPartHandler : ContentHandler {
 
         private readonly INotifier _notifier;
+        private readonly IJsonConverter _jsonConverter;
 
         public new ILogger Logger { get; set; }
         public Localizer T { get; set; }
 
 
-        public FreeboardPartHandler(IRepository<FreeboardPartRecord> repository, INotifier notifier) {
+        public FreeboardPartHandler(
+            IRepository<FreeboardPartRecord> repository,
+            INotifier notifier,
+            IJsonConverter jsonConverter) {
             _notifier = notifier;
+            _jsonConverter = jsonConverter;
             Filters.Add(StorageFilter.For(repository));
         }
 
@@ -44,8 +49,8 @@ namespace Freeboard.Handlers {
                 return;
             try {
                 //test and format configuration
-                dynamic parsedJson = JsonConvert.DeserializeObject(part.Configuration);
-                part.Configuration = JsonConvert.SerializeObject(parsedJson, Formatting.Indented);
+                dynamic parsedJson = _jsonConverter.Deserialize(part.Configuration);
+                part.Configuration = _jsonConverter.Serialize(parsedJson, JsonFormat.Indented);
             } catch (Exception ex) {
                 _notifier.Add(NotifyType.Warning, T(ex.Message));
                 Logger.Warning(ex.Message);

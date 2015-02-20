@@ -2,10 +2,10 @@
 using System.Text;
 using System.Web.Mvc;
 using Freeboard.Models;
-using Newtonsoft.Json;
 using Orchard;
 using Orchard.ContentManagement;
 using Orchard.Localization;
+using Orchard.Services;
 
 namespace Freeboard.Controllers {
 
@@ -13,9 +13,11 @@ namespace Freeboard.Controllers {
 
         protected Localizer T { get; set; }
         private readonly IOrchardServices _services;
+        private readonly IJsonConverter _jsonConverter;
 
-        public FreeboardController(IOrchardServices services) {
+        public FreeboardController(IOrchardServices services, IJsonConverter jsonConverter) {
             _services = services;
+            _jsonConverter = jsonConverter;
             T = NullLocalizer.Instance;
         }
 
@@ -53,9 +55,9 @@ namespace Freeboard.Controllers {
             }
 
             try {
-                dynamic parsedJson = JsonConvert.DeserializeObject(item.Configuration);
+                dynamic parsedJson = _jsonConverter.Deserialize(item.Configuration);
                 parsedJson.status = 200;
-                return JsonConvert.SerializeObject(parsedJson, Formatting.Indented);
+                return _jsonConverter.Serialize(parsedJson, JsonFormat.Indented);
             }
             catch (Exception) {
                 return "{\"status\":500}";
@@ -87,8 +89,8 @@ namespace Freeboard.Controllers {
             }
 
             try {
-                dynamic parsedJson = JsonConvert.DeserializeObject(data);
-                item.Configuration = JsonConvert.SerializeObject(parsedJson, Formatting.Indented);
+                dynamic parsedJson = _jsonConverter.Deserialize(data);
+                item.Configuration = _jsonConverter.Serialize(parsedJson, JsonFormat.Indented);
             } catch (Exception) {
                 return "{\"status\":500}";
             }
