@@ -1,0 +1,82 @@
+﻿@model Freeboard.Models.FreeboardPart
+
+@{
+    var theme = "codemirror-4.12/theme/" + Model.EditorTheme + ".min.css";
+    
+    Script.Require("jQuery").AtHead();
+
+    Style.Include("codemirror-4.12/lib/codemirror.min.css").AtHead();
+    Style.Include("codemirror-4.12/addon/display/fullscreen.min.css").AtHead();
+    Style.Include("codemirror-4.12/addon/fold/foldgutter.min.css").AtHead();
+    Style.Include("codemirror-4.12/addon/dialog/dialog.min.css").AtHead();
+    Style.Include("codemirror-4.12/addon/hint/show-hint.min.css").AtHead();
+    Style.Include(theme).AtHead();
+
+    Script.Include("codemirror-4.12/lib/codemirror.min.js").AtHead();
+    Script.Include("codemirror-4.12/mode/javascript/javascript.min.js").AtHead();
+    Script.Include("codemirror-4.12/addon/display/fullscreen.min.js").AtHead();
+    Script.Include("codemirror-4.12/addon/fold/foldcode.min.js").AtHead();
+    Script.Include("codemirror-4.12/addon/fold/foldgutter.min.js").AtHead();
+    Script.Include("codemirror-4.12/addon/dialog/dialog.min.js").AtHead();
+    Script.Include("codemirror-4.12/addon/search/search.min.js").AtHead();
+    Script.Include("codemirror-4.12/addon/search/searchcursor.min.js").AtHead();
+    Script.Include("codemirror-4.12/addon/search/match-highlighter.min.js").AtHead();
+    Script.Include("codemirror-4.12/addon/hint/show-hint.min.js").AtHead();
+    Script.Include("codemirror-4.12/addon/hint/anyword-hint.min.js").AtHead();
+}
+
+<script>
+$(document).ready(function () {
+
+    var xml = $('#Freeboard_Configuration');
+
+    var editor = CodeMirror.fromTextArea(xml[0], {
+        mode: 'javascript',
+        json: true,
+        matchBrackets: true,
+        lineNumbers: true,
+        theme: '@(Model.EditorTheme)',
+        extraKeys: {
+            "Ctrl-Space": "autocomplete",
+            "Ctrl-Q": function (cm) { cm.foldCode(cm.getCursor()); },
+            "Ctrl-S": function () { $('.CodeMirror').closest('form').find(':submit').click(); },
+            "F11": function (cm) {
+                cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+            },
+            "Esc": function (cm) {
+                if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+            },
+            "Tab": function (cm) {
+                var spaces = Array(3).join(" ");
+                cm.replaceSelection(spaces);
+            }
+        },
+        foldGutter: true,
+        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+    });
+
+    editor.setSize("100%", Math.round(window.innerHeight * .7));
+});
+</script>
+
+<div class="editor-field">
+    @Html.LabelFor(x => x.Configuration, T("Configuration"))
+    @Html.TextAreaFor(x => x.Configuration)
+</div>
+<div class="hint">
+    <strong>F11</strong>: <span>Full Screen</span>,
+    <strong>Esc</strong>: <span>Exit Full Screen</span>,
+    <strong>Ctrl-S</strong>: <span>Save</span>,
+    <strong>Ctrl-Space</strong>: <span>Auto Complete</span>,
+    <strong>Ctrl-F</strong>: <span>Find</span>,
+    <strong>Ctrl-G</strong>: <span>Find next</span>,
+    <strong>Shift-Ctrl-G</strong>: <span>Find previous</span>,
+    <strong>Shift-Ctrl-F</strong>: <span>Replace</span>,
+    <strong>Shift-Ctrl-R</strong>: <span>Replace all</span>.
+</div>
+
+<fieldset>
+    @Html.LabelFor(m => m.EditorTheme, T("Editor Theme"))
+    @Html.DropDownListFor(m => m.EditorTheme, new SelectList(Model.AvailableThemes, Model.EditorTheme))
+    <span class="hint">@T("Change this code editor's theme.")</span>
+</fieldset>

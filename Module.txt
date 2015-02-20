@@ -1,0 +1,12 @@
+﻿Name: Freeboard
+AntiForgery: enabled
+Author: Freeboard by Jim Heising and Bug Labs, Inc.  Orchard module by Dale Newman.
+Website: http://freeboard.io/
+Version: 0.0.1
+OrchardVersion: 1.7
+Description: Freeboards as securable content items.
+Dependencies: Orchard.ContentPermissions
+Features:
+    Freeboard:
+        Description: Freeboards as securable content items.
+		Category: Content
