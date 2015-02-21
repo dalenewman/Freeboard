@@ -52,8 +52,8 @@ You can see it back in the admin site:
 ![freeboard updated in admin site](http://transformalize.com/Media/Default/projects/freeboard/orchard-freeboard-saved.jpg)
 
 If you like, you can tweak it 
-with the [CodeMirror](http://codemirror.net/) editor.  For example, 
-you update `allow_edit` to false and it would be read only.
+with the [CodeMirror](http://codemirror.net/) editor. 
+For example, update `allow_edit` to false to make read only.
 
 ###Credit
 
