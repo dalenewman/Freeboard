@@ -14,17 +14,17 @@ you Freeboard as securable content items.
 
 ###Create a Freeboard
 
-![Create Freeboard Content Item](http://transformalize.com/Media/Default/projects/freeboard/orchard-freeboard-create.jpg)
-
 To create one, goto the Orchard CMS Adminstration site.  Under 
 the *New* menu, click on *Freeboard*.
 
-###Secure a Freeboard
+![Create Freeboard Content Item](http://transformalize.com/Media/Default/projects/freeboard/orchard-freeboard-create.jpg)
 
-![Edit and Grant Permissions](http://transformalize.com/Media/Default/projects/freeboard/orchard-freeboard-save.jpg)
+###Secure a Freeboard
 
 If you *Enable Content Item access control*, you may assign *view* 
 and *edit* permissions to the `Anonymous` or `Authenticated` roles. 
+
+![Edit and Grant Permissions](http://transformalize.com/Media/Default/projects/freeboard/orchard-freeboard-save.jpg)
 
 ###Build and Save a Freeboard
 
@@ -42,7 +42,7 @@ where `id` is the content item's numeric id.
 
 The menu has been modified to load and save from Orchard.
 
-I'll add a couple widgets and save it:
+Add some widgets and save it:
 
 ![freeboard updated](http://transformalize.com/Media/Default/projects/freeboard/orchard-freeboard-modified.jpg)
 
