@@ -15,9 +15,7 @@ namespace Freeboard.Handlers {
         private readonly INotifier _notifier;
         private readonly IJsonConverter _jsonConverter;
 
-        public new ILogger Logger { get; set; }
         public Localizer T { get; set; }
-
 
         public FreeboardPartHandler(
             IRepository<FreeboardPartRecord> repository,
