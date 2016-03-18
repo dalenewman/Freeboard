@@ -20,13 +20,13 @@
             save: '@(Url.Action("Save","Freeboard"))',
             token: '@(Html.AntiForgeryTokenValueOrchard())',
             id: @(Model.Id),
-            home: '@(Url.Content("~/"))',
+            home: '@(Url.Content("~/"))'
         };
         //-->
     </script>
     <script src="js/freeboard.thirdparty.min.js"></script>
     <script type="text/javascript">
-        head.js("js/freeboard-plugins.min.js",
+        head.js("js/freeboard_plugins.min.js",
             function () {
                 $(function () {
                     freeboard.initialize(true);
@@ -47,7 +47,8 @@
     <div id="board-content">
         <img id="dash-logo" data-bind="attr:{src: header_image}, visible:header_image()">
         <div class="gridster responsive-column-width">
-            <ul data-bind="grid: true"></ul>
+            <ul data-bind="grid: true">
+			</ul>
         </div>
     </div>
     <header id="main-header" data-bind="if:allow_edit">
@@ -120,7 +121,8 @@
     </header>
 
     <div style="display:hidden">
-        <ul data-bind="template: { name: 'pane-template', foreach: panes}"></ul>
+        <ul data-bind="template: { name: 'pane-template', foreach: panes}">
+		</ul>
     </div>
 
     <script type="text/html" id="pane-template">

@@ -1,28 +1,31 @@
 ﻿@model Freeboard.Models.FreeboardPart
 
 @{
-    var theme = "codemirror-4.12/theme/" + Model.EditorTheme + ".min.css";
     
     Script.Require("jQuery").AtHead();
 
-    Style.Include("codemirror-4.12/lib/codemirror.min.css").AtHead();
-    Style.Include("codemirror-4.12/addon/display/fullscreen.min.css").AtHead();
-    Style.Include("codemirror-4.12/addon/fold/foldgutter.min.css").AtHead();
-    Style.Include("codemirror-4.12/addon/dialog/dialog.min.css").AtHead();
-    Style.Include("codemirror-4.12/addon/hint/show-hint.min.css").AtHead();
-    Style.Include(theme).AtHead();
+    const string root = "https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.12.0/";
 
-    Script.Include("codemirror-4.12/lib/codemirror.min.js").AtHead();
-    Script.Include("codemirror-4.12/mode/javascript/javascript.min.js").AtHead();
-    Script.Include("codemirror-4.12/addon/display/fullscreen.min.js").AtHead();
-    Script.Include("codemirror-4.12/addon/fold/foldcode.min.js").AtHead();
-    Script.Include("codemirror-4.12/addon/fold/foldgutter.min.js").AtHead();
-    Script.Include("codemirror-4.12/addon/dialog/dialog.min.js").AtHead();
-    Script.Include("codemirror-4.12/addon/search/search.min.js").AtHead();
-    Script.Include("codemirror-4.12/addon/search/searchcursor.min.js").AtHead();
-    Script.Include("codemirror-4.12/addon/search/match-highlighter.min.js").AtHead();
-    Script.Include("codemirror-4.12/addon/hint/show-hint.min.js").AtHead();
-    Script.Include("codemirror-4.12/addon/hint/anyword-hint.min.js").AtHead();
+    Style.Include(root + "codemirror.min.css").AtHead();
+    Style.Include(root + "addon/display/fullscreen.min.css").AtHead();
+    Style.Include(root + "addon/fold/foldgutter.min.css").AtHead();
+    Style.Include(root + "addon/dialog/dialog.css").AtHead();
+    Style.Include(root + "addon/hint/show-hint.min.css").AtHead();
+    Style.Include(root + "theme/" + Model.EditorTheme + ".min.css").AtHead();
+
+    Script.Include(root + "codemirror.min.js").AtHead();
+    Script.Include(root + "mode/javascript/javascript.min.js").AtHead();
+    Script.Include(root + "addon/display/fullscreen.min.js").AtHead();
+    Script.Include(root + "addon/fold/foldcode.min.js").AtHead();
+    Script.Include(root + "addon/fold/foldgutter.min.js").AtHead();
+    Script.Include(root + "addon/fold/xml-fold.min.js").AtHead();
+    Script.Include(root + "addon/dialog/dialog.min.js").AtHead();
+    Script.Include(root + "addon/search/search.min.js").AtHead();
+    Script.Include(root + "addon/search/searchcursor.min.js").AtHead();
+    Script.Include(root + "addon/search/jump-to-line.min.js").AtHead();
+    Script.Include(root + "addon/search/match-highlighter.min.js").AtHead();
+    Script.Include(root + "addon/hint/show-hint.min.js").AtHead();
+    Script.Include(root + "addon/hint/anyword-hint.min.js").AtHead();
 }
 
 <script>

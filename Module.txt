@@ -2,8 +2,8 @@
 AntiForgery: enabled
 Author: Freeboard by Jim Heising and Bug Labs, Inc.  Orchard module by Dale Newman.
 Website: http://freeboard.io/
-Version: 0.0.2
-OrchardVersion: 1.7
+Version: 0.0.3
+OrchardVersion: 1.8.1
 Description: Freeboards as securable content items.
 Dependencies: Orchard.ContentPermissions
 Features:

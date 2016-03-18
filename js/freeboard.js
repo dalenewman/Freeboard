@@ -1377,7 +1377,7 @@ PluginEditor = function(jsEditor, valueEditor)
 		var pluginDescriptionElement = $('<div id="plugin-description"></div>').hide();
 		form.append(pluginDescriptionElement);
 
-		function createSettingsFromDefinition(settingsDefs)
+		function createSettingsFromDefinition(settingsDefs, typeaheadSource, typeaheadDataSegment)
 		{
 			_.each(settingsDefs, function(settingDef)
 			{
@@ -1620,6 +1620,62 @@ PluginEditor = function(jsEditor, valueEditor)
 							{
 								input.val(currentSettingsValues[settingDef.name]);
 							}
+
+							if(typeaheadSource && settingDef.typeahead_data_field){
+								input.addClass('typeahead_data_field-' + settingDef.typeahead_data_field);
+							}
+
+							if(typeaheadSource && settingDef.typeahead_field){
+								var typeaheadValues = [];
+
+								input.keyup(function(event){
+									if(event.which >= 65 && event.which <= 91) {
+										input.trigger('change');
+									}
+								});
+
+								$(input).autocomplete({
+									source: typeaheadValues,
+									select: function(event, ui){
+										input.val(ui.item.value);
+										input.trigger('change');
+									}
+								});
+
+								input.change(function(event){
+									var value = input.val();
+									var source = _.template(typeaheadSource)({input: value});
+									$.get(source, function(data){
+										if(typeaheadDataSegment){
+											data = data[typeaheadDataSegment];
+										}
+										data  = _.select(data, function(elm){
+											return elm[settingDef.typeahead_field][0] == value[0];
+										});
+
+										typeaheadValues = _.map(data, function(elm){
+											return elm[settingDef.typeahead_field];
+										});
+										$(input).autocomplete("option", "source", typeaheadValues);
+
+										if(data.length == 1){
+											data = data[0];
+											//we found the one. let's use it to populate the other info
+											for(var field in data){
+												if(data.hasOwnProperty(field)){
+													var otherInput = $(_.template('input.typeahead_data_field-<%= field %>')({field: field}));
+													if(otherInput){
+														otherInput.val(data[field]);
+														if(otherInput.val() != input.val()) {
+															otherInput.trigger('change');
+														}
+													}
+												}
+											}
+										}
+									});
+								});
+							}
 						}
 
 						break;
@@ -1651,6 +1707,11 @@ PluginEditor = function(jsEditor, valueEditor)
 				if(settingDef.required && (_.isUndefined(newSettings.settings[settingDef.name]) || newSettings.settings[settingDef.name] == ""))
 				{
                     _displayValidationError(settingDef.name, "This is required.");
+					return true;
+				}
+				else if(settingDef.type == "integer" && (newSettings.settings[settingDef.name] % 1 !== 0))
+				{
+					_displayValidationError(settingDef.name, "Must be a whole number.");
 					return true;
 				}
 				else if(settingDef.type == "number" && !_isNumerical(newSettings.settings[settingDef.name]))
@@ -1711,7 +1772,7 @@ PluginEditor = function(jsEditor, valueEditor)
                     }
 
 					$("#dialog-ok").show();
-					createSettingsFromDefinition(selectedType.settings);
+					createSettingsFromDefinition(selectedType.settings, selectedType.typeahead_source, selectedType.typeahead_data_segment);
 				}
 			});
 		}
@@ -2628,7 +2689,7 @@ var freeboard = (function()
 									{
 										name : "col_width",
 										display_name : "Columns",
-										type : "number",
+										type : "integer",
 										default_value : 1,
 										required : true
 									}

@@ -12,7 +12,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Freeboard</RootNamespace>
     <AssemblyName>Freeboard</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -34,6 +34,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -43,6 +44,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
@@ -51,7 +53,11 @@
     <Reference Include="System.ComponentModel.DataAnnotations">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\lib\aspnetmvc\System.Web.Mvc.dll</HintPath>
@@ -69,12 +75,11 @@
       <DependentUpon>freeboard.css</DependentUpon>
     </Content>
     <Content Include="img\dropdown-arrow.png" />
+    <Content Include="img\glyphicons-blackboard.png" />
     <Content Include="img\glyphicons-halflings-white.png" />
     <Content Include="img\glyphicons-halflings.png" />
-    <Content Include="js\freeboard-plugins.js" />
-    <Content Include="js\freeboard-plugins.min.js">
-      <DependentUpon>freeboard-plugins.js</DependentUpon>
-    </Content>
+    <Content Include="img\glyphicons-log-in.png" />
+    <Content Include="img\glyphicons-log-out.png" />
     <Content Include="js\freeboard.js" />
     <Content Include="js\freeboard.min.js">
       <DependentUpon>freeboard.js</DependentUpon>
@@ -86,6 +91,10 @@
     <Content Include="js\freeboard.thirdparty.js" />
     <Content Include="js\freeboard.thirdparty.min.js">
       <DependentUpon>freeboard.thirdparty.js</DependentUpon>
+    </Content>
+    <Content Include="js\freeboard_plugins.js" />
+    <Content Include="js\freeboard_plugins.min.js">
+      <DependentUpon>freeboard_plugins.js</DependentUpon>
     </Content>
     <Content Include="lib\css\freeboard\styles.css" />
     <Content Include="lib\css\thirdparty\codemirror-ambiance.css" />
@@ -116,236 +125,10 @@
     <Content Include="plugins\thirdparty\jquery.sparkline.min.js" />
     <Content Include="plugins\thirdparty\justgage.1.0.1.js" />
     <Content Include="plugins\thirdparty\raphael.2.1.0.min.js" />
-    <Content Include="Scripts\codemirror-4.12\addon\dialog\dialog.js" />
-    <Content Include="Scripts\codemirror-4.12\addon\dialog\dialog.min.js">
-      <DependentUpon>dialog.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\codemirror-4.12\addon\display\fullscreen.js" />
-    <Content Include="Scripts\codemirror-4.12\addon\display\fullscreen.min.js">
-      <DependentUpon>fullscreen.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\codemirror-4.12\addon\edit\closetag.js" />
-    <Content Include="Scripts\codemirror-4.12\addon\edit\closetag.min.js">
-      <DependentUpon>closetag.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\codemirror-4.12\addon\edit\matchtags.js" />
-    <Content Include="Scripts\codemirror-4.12\addon\edit\matchtags.min.js">
-      <DependentUpon>matchtags.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\codemirror-4.12\addon\fold\foldcode.js" />
-    <Content Include="Scripts\codemirror-4.12\addon\fold\foldcode.min.js">
-      <DependentUpon>foldcode.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\codemirror-4.12\addon\fold\foldgutter.js" />
-    <Content Include="Scripts\codemirror-4.12\addon\fold\foldgutter.min.js">
-      <DependentUpon>foldgutter.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\codemirror-4.12\addon\fold\xml-fold.js" />
-    <Content Include="Scripts\codemirror-4.12\addon\fold\xml-fold.min.js">
-      <DependentUpon>xml-fold.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\codemirror-4.12\addon\hint\anyword-hint.js" />
-    <Content Include="Scripts\codemirror-4.12\addon\hint\anyword-hint.min.js">
-      <DependentUpon>anyword-hint.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\codemirror-4.12\addon\hint\show-hint.js" />
-    <Content Include="Scripts\codemirror-4.12\addon\hint\show-hint.min.js">
-      <DependentUpon>show-hint.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\codemirror-4.12\addon\hint\xml-hint.js" />
-    <Content Include="Scripts\codemirror-4.12\addon\hint\xml-hint.min.js">
-      <DependentUpon>xml-hint.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\codemirror-4.12\addon\search\match-highlighter.js" />
-    <Content Include="Scripts\codemirror-4.12\addon\search\match-highlighter.min.js">
-      <DependentUpon>match-highlighter.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\codemirror-4.12\addon\search\matchesonscrollbar.js" />
-    <Content Include="Scripts\codemirror-4.12\addon\search\matchesonscrollbar.min.js">
-      <DependentUpon>matchesonscrollbar.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\codemirror-4.12\addon\search\search.js" />
-    <Content Include="Scripts\codemirror-4.12\addon\search\search.min.js">
-      <DependentUpon>search.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\codemirror-4.12\addon\search\searchcursor.js" />
-    <Content Include="Scripts\codemirror-4.12\addon\search\searchcursor.min.js">
-      <DependentUpon>searchcursor.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\codemirror-4.12\lib\codemirror.js" />
-    <Content Include="Scripts\codemirror-4.12\lib\codemirror.min.js">
-      <DependentUpon>codemirror.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\codemirror-4.12\mode\javascript\javascript.js" />
-    <Content Include="Scripts\codemirror-4.12\mode\javascript\javascript.min.js">
-      <DependentUpon>javascript.js</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\addon\dialog\dialog.css" />
-    <Content Include="Styles\codemirror-4.12\addon\dialog\dialog.min.css">
-      <DependentUpon>dialog.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\addon\display\fullscreen.css" />
-    <Content Include="Styles\codemirror-4.12\addon\display\fullscreen.min.css">
-      <DependentUpon>fullscreen.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\addon\fold\foldgutter.css" />
-    <Content Include="Styles\codemirror-4.12\addon\fold\foldgutter.min.css">
-      <DependentUpon>foldgutter.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\addon\hint\show-hint.css" />
-    <Content Include="Styles\codemirror-4.12\addon\hint\show-hint.min.css">
-      <DependentUpon>show-hint.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\addon\search\matchesonscrollbar.css" />
-    <Content Include="Styles\codemirror-4.12\addon\search\matchesonscrollbar.min.css">
-      <DependentUpon>matchesonscrollbar.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\lib\codemirror.css" />
-    <Content Include="Styles\codemirror-4.12\lib\codemirror.min.css">
-      <DependentUpon>codemirror.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\3024-day.css" />
-    <Content Include="Styles\codemirror-4.12\theme\3024-day.min.css">
-      <DependentUpon>3024-day.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\3024-night.css" />
-    <Content Include="Styles\codemirror-4.12\theme\3024-night.min.css">
-      <DependentUpon>3024-night.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\ambiance-mobile.css" />
-    <Content Include="Styles\codemirror-4.12\theme\ambiance-mobile.min.css">
-      <DependentUpon>ambiance-mobile.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\ambiance.css" />
-    <Content Include="Styles\codemirror-4.12\theme\ambiance.min.css">
-      <DependentUpon>ambiance.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\base16-dark.css" />
-    <Content Include="Styles\codemirror-4.12\theme\base16-dark.min.css">
-      <DependentUpon>base16-dark.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\base16-light.css" />
-    <Content Include="Styles\codemirror-4.12\theme\base16-light.min.css">
-      <DependentUpon>base16-light.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\blackboard.css" />
-    <Content Include="Styles\codemirror-4.12\theme\blackboard.min.css">
-      <DependentUpon>blackboard.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\cobalt.css" />
-    <Content Include="Styles\codemirror-4.12\theme\cobalt.min.css">
-      <DependentUpon>cobalt.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\eclipse.css" />
-    <Content Include="Styles\codemirror-4.12\theme\eclipse.min.css">
-      <DependentUpon>eclipse.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\elegant.css" />
-    <Content Include="Styles\codemirror-4.12\theme\elegant.min.css">
-      <DependentUpon>elegant.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\erlang-dark.css" />
-    <Content Include="Styles\codemirror-4.12\theme\erlang-dark.min.css">
-      <DependentUpon>erlang-dark.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\lesser-dark.css" />
-    <Content Include="Styles\codemirror-4.12\theme\lesser-dark.min.css">
-      <DependentUpon>lesser-dark.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\mbo.css" />
-    <Content Include="Styles\codemirror-4.12\theme\mbo.min.css">
-      <DependentUpon>mbo.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\mdn-like.css" />
-    <Content Include="Styles\codemirror-4.12\theme\mdn-like.min.css">
-      <DependentUpon>mdn-like.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\midnight.css" />
-    <Content Include="Styles\codemirror-4.12\theme\midnight.min.css">
-      <DependentUpon>midnight.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\monokai.css" />
-    <Content Include="Styles\codemirror-4.12\theme\monokai.min.css">
-      <DependentUpon>monokai.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\neat.css" />
-    <Content Include="Styles\codemirror-4.12\theme\neat.min.css">
-      <DependentUpon>neat.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\neo.css" />
-    <Content Include="Styles\codemirror-4.12\theme\neo.min.css">
-      <DependentUpon>neo.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\night.css" />
-    <Content Include="Styles\codemirror-4.12\theme\night.min.css">
-      <DependentUpon>night.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\paraiso-dark.css" />
-    <Content Include="Styles\codemirror-4.12\theme\paraiso-dark.min.css">
-      <DependentUpon>paraiso-dark.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\paraiso-light.css" />
-    <Content Include="Styles\codemirror-4.12\theme\paraiso-light.min.css">
-      <DependentUpon>paraiso-light.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\pastel-on-dark.css" />
-    <Content Include="Styles\codemirror-4.12\theme\pastel-on-dark.min.css">
-      <DependentUpon>pastel-on-dark.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\rubyblue.css" />
-    <Content Include="Styles\codemirror-4.12\theme\rubyblue.min.css">
-      <DependentUpon>rubyblue.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\solarized.css" />
-    <Content Include="Styles\codemirror-4.12\theme\solarized.min.css">
-      <DependentUpon>solarized.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\the-matrix.css" />
-    <Content Include="Styles\codemirror-4.12\theme\the-matrix.min.css">
-      <DependentUpon>the-matrix.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\tomorrow-night-bright.css" />
-    <Content Include="Styles\codemirror-4.12\theme\tomorrow-night-bright.min.css">
-      <DependentUpon>tomorrow-night-bright.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\tomorrow-night-eighties.css" />
-    <Content Include="Styles\codemirror-4.12\theme\tomorrow-night-eighties.min.css">
-      <DependentUpon>tomorrow-night-eighties.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\twilight.css" />
-    <Content Include="Styles\codemirror-4.12\theme\twilight.min.css">
-      <DependentUpon>twilight.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\vibrant-ink.css" />
-    <Content Include="Styles\codemirror-4.12\theme\vibrant-ink.min.css">
-      <DependentUpon>vibrant-ink.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\xq-dark.css" />
-    <Content Include="Styles\codemirror-4.12\theme\xq-dark.min.css">
-      <DependentUpon>xq-dark.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\xq-light.css" />
-    <Content Include="Styles\codemirror-4.12\theme\xq-light.min.css">
-      <DependentUpon>xq-light.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\codemirror-4.12\theme\zenburn.css" />
-    <Content Include="Styles\codemirror-4.12\theme\zenburn.min.css">
-      <DependentUpon>zenburn.css</DependentUpon>
-    </Content>
     <Content Include="Web.config" />
     <Content Include="Views\Web.config" />
     <Content Include="Properties\AssemblyInfo.cs" />
     <Content Include="Module.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
-      <Project>{2D1D92BB-4555-4CBE-8D0E-63563D6CE4C6}</Project>
-      <Name>Orchard.Framework</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Core\Orchard.Core.csproj">
-      <Project>{9916839C-39FC-4CEB-A5AF-89CA7E87119F}</Project>
-      <Name>Orchard.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\FreeboardController.cs" />
@@ -383,81 +166,6 @@
     <Content Include="Views\EditorTemplates\Parts\Freeboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\codemirror-4.12\addon\dialog\dialog.min.js.map">
-      <DependentUpon>dialog.min.js</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\codemirror-4.12\addon\display\fullscreen.min.js.map">
-      <DependentUpon>fullscreen.min.js</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\codemirror-4.12\addon\edit\closetag.min.js.map">
-      <DependentUpon>closetag.min.js</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\codemirror-4.12\addon\edit\matchtags.min.js.map">
-      <DependentUpon>matchtags.min.js</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\codemirror-4.12\addon\fold\foldcode.min.js.map">
-      <DependentUpon>foldcode.min.js</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\codemirror-4.12\addon\fold\foldgutter.min.js.map">
-      <DependentUpon>foldgutter.min.js</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\codemirror-4.12\addon\fold\xml-fold.min.js.map">
-      <DependentUpon>xml-fold.min.js</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\codemirror-4.12\addon\hint\anyword-hint.min.js.map">
-      <DependentUpon>anyword-hint.min.js</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\codemirror-4.12\addon\hint\show-hint.min.js.map">
-      <DependentUpon>show-hint.min.js</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\codemirror-4.12\addon\hint\xml-hint.min.js.map">
-      <DependentUpon>xml-hint.min.js</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\codemirror-4.12\addon\search\match-highlighter.min.js.map">
-      <DependentUpon>match-highlighter.min.js</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\codemirror-4.12\addon\search\matchesonscrollbar.min.js.map">
-      <DependentUpon>matchesonscrollbar.min.js</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\codemirror-4.12\addon\search\search.min.js.map">
-      <DependentUpon>search.min.js</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\codemirror-4.12\addon\search\searchcursor.min.js.map">
-      <DependentUpon>searchcursor.min.js</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\codemirror-4.12\lib\codemirror.min.js.map">
-      <DependentUpon>codemirror.min.js</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Scripts\Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -467,35 +175,31 @@
     <Content Include="Views\Freeboard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\codemirror-4.12\mode\javascript\javascript.min.js.map">
-      <DependentUpon>javascript.min.js</DependentUpon>
+    <Content Include="js\freeboard_plugins.min.js.map">
+      <DependentUpon>freeboard_plugins.min.js</DependentUpon>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="js\freeboard-plugins.min.js.map">
-      <DependentUpon>freeboard-plugins.min.js</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="js\freeboard.min.js.map">
       <DependentUpon>freeboard.min.js</DependentUpon>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="js\freeboard.plugins.min.js.map">
       <DependentUpon>freeboard.plugins.min.js</DependentUpon>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="js\freeboard.thirdparty.min.js.map">
       <DependentUpon>freeboard.thirdparty.min.js</DependentUpon>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <Content Include="README.md" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
+      <Project>{2d1d92bb-4555-4cbe-8d0e-63563d6ce4c6}</Project>
+      <Name>Orchard.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Orchard.Core.csproj">
+      <Project>{9916839c-39fc-4ceb-a5af-89ca7e87119f}</Project>
+      <Name>Orchard.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -58,8 +58,7 @@ namespace Freeboard.Controllers {
                 dynamic parsedJson = _jsonConverter.Deserialize(item.Configuration);
                 parsedJson.status = 200;
                 return _jsonConverter.Serialize(parsedJson, JsonFormat.Indented);
-            }
-            catch (Exception) {
+            } catch (Exception) {
                 return "{\"status\":500}";
             }
         }
